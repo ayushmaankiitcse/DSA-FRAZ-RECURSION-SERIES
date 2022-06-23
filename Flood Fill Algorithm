@@ -1,0 +1,18 @@
+void flood(int i,int j,vector<vector<int>>&image,int oldcolor,int newcolor,int n,int m)
+{
+    if(i<0||j<0||i==n||j==m||image[i][j]!=oldcolor)
+        return;
+    image[i][j]=newcolor;
+    flood(i+1,j,image,oldcolor,newcolor,n,m);
+   flood(i-1,j,image,oldcolor,newcolor,n,m);
+     flood(i,j+1,image,oldcolor,newcolor,n,m);
+    flood(i,j-1,image,oldcolor,newcolor,n,m);
+}
+vector<vector<int>> floodFill(vector<vector<int>> &image, int x, int y, int newcolor)
+{
+    int oldcolor=image[x][y];
+    if(oldcolor==newcolor) return image;
+    int n=image.size(),m=image[0].size();
+    flood(x,y,image,oldcolor,newcolor,n,m);
+    return image;
+}
