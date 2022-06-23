@@ -1,0 +1,26 @@
+void help(int i,int k,int sum,int n,vector<int>&subset,vector<vector<int>>&ans)
+{
+    if(k==0)
+    {
+        if(sum==n)
+        {
+            ans.push_back(subset);
+            return;
+        }
+        return;
+    }
+    if(i==10)return;
+    sum=sum+i;
+    subset.push_back(i);
+    help(i+1,k-1,sum,n,subset,ans);
+    sum=sum-i;
+    subset.pop_back();
+    help(i+1,k,sum,n,subset,ans);
+}
+vector<vector<int>> combinationSum3(int k, int n) {
+    vector<int>subset;
+    vector<vector<int>>ans;
+    int sum=0;
+    help(1,k,0,n,subset,ans);
+    return ans;
+}
